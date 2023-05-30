@@ -8,7 +8,7 @@ clc
 
 
 % Settings
-T = 400;     % Time series length
+T = 300;     % Time series length
 
 % Transition functions
 fs = @(S, I, N, b) S - b*S.*I./N;
@@ -29,7 +29,7 @@ var_y = 0.02;
 R(1) = 0;
 I(1) = 1;
 E(1) = 0;
-N0 = 5e5;
+N0 = 5e8;
 S(1) = N0 - I(1);
 g(1) = f(I(1), E(1), alpha, gamma);
 y(1) = normrnd(g(1), var_y);
@@ -58,7 +58,7 @@ end
 
 
 % Number of particles
-M = 200;
+M = 100;
 
 % Initialize
 lambda = 1;
@@ -81,10 +81,10 @@ var_yx = var_y;
 % TIME
 for t = 2:T
 
-    beta_x = abs(normrnd(beta, 0.01));
-    gamma_x = abs(normrnd(gamma, 0.01));
-    alpha_x = abs(normrnd(1, 0.1));
-    var_gx = var_g;
+%     beta_x = abs(normrnd(beta, 0.02));
+%     gamma_x = abs(normrnd(gamma, 0.02));
+%     alpha_x = abs(normrnd(1, 0.2));
+%     var_gx = var_g;
 
 
     % PROPOSE PARTICLES
@@ -152,6 +152,7 @@ set(gca, 'FontSize', fsz)
 ylabel('Susceptible', 'FontSize', fsz)
 xlabel('Time', 'FontSize', fsz)
 legend('Truth', 'Estimated', 'FontSize', fsz)
+title('S', 'FontSize', fsz)
 
 
 figure(3)
@@ -162,6 +163,7 @@ set(gca, 'FontSize', fsz)
 ylabel('Exposed', 'FontSize', fsz)
 xlabel('Time', 'FontSize', fsz)
 legend('Truth', 'Estimated', 'FontSize', fsz)
+title('E', 'FontSize', fsz)
 
 figure(4)
 plot(1:T, I,  'k', 'linewidth', lwd)
@@ -171,6 +173,7 @@ set(gca, 'FontSize', fsz)
 ylabel('Infectious', 'FontSize', fsz)
 xlabel('Time', 'FontSize', fsz)
 legend('Truth', 'Estimated', 'FontSize', fsz)
+title('I', 'FontSize', fsz)
 
 figure(5)
 plot(1:T, R,  'k', 'linewidth', lwd)
@@ -180,6 +183,7 @@ set(gca, 'FontSize', fsz)
 ylabel('Recovery', 'FontSize', fsz)
 xlabel('Time', 'FontSize', fsz)
 legend('Truth', 'Estimated', 'FontSize', fsz)
+title('R', 'FontSize', fsz)
 
 
 % figure(6)
