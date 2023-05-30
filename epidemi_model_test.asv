@@ -21,7 +21,7 @@ f = @(I, E, a, ga) -ga + a*(E./I);
 % True constants
 beta = 0.2;
 alpha = 1.2;
-gamma = -0.03;
+gamma = 0.1;
 var_g = 0.02;
 var_y = 0.02;
 
@@ -29,7 +29,7 @@ var_y = 0.02;
 R(1) = 0;
 I(1) = 1;
 E(1) = 0;
-N0 = 7e5;
+N0 = 5e5;
 S(1) = N0 - I(1);
 g(1) = f(I(1), E(1), alpha, gamma);
 y(1) = normrnd(g(1), var_y);
@@ -71,9 +71,16 @@ Rx = zeros(1,M);
 
 % Params
 % True constants
+% beta = 0.2;
+% alpha = 1.2;
+% gamma = 0.03;
+
+% True constants
 beta = 0.2;
 alpha = 1.2;
-gamma = 0.03;
+gamma = 0.1;
+var_g = 0.02;
+var_y = 0.02;
 
 beta_x = beta;
 % abs(normrnd(beta, 0.1));

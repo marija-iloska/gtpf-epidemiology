@@ -8,7 +8,7 @@ clc
 
 
 % Settings
-T = 200;     % Time series length
+T = 400;     % Time series length
 
 % Transition functions
 fs = @(S, I, N, b) S - b*S.*I./N;
@@ -20,16 +20,16 @@ f = @(I, E, a, ga) -ga + a*(E./I);
 
 % True constants
 beta = 0.2;
-alpha = 1.2;
-gamma = -0.03;
-var_g = 0.02;
+alpha = 1.5;
+gamma = 0.03;
+var_g = 0.01;
 var_y = 0.02;
 
 % Initial conditions
 R(1) = 0;
 I(1) = 1;
 E(1) = 0;
-N0 = 7e5;
+N0 = 5e5;
 S(1) = N0 - I(1);
 g(1) = f(I(1), E(1), alpha, gamma);
 y(1) = normrnd(g(1), var_y);
@@ -58,7 +58,7 @@ end
 
 
 % Number of particles
-M = 100;
+M = 200;
 
 % Initialize
 lambda = 1;
@@ -69,21 +69,22 @@ S_est = mean(Sx);
 Ex = zeros(1,M);
 Rx = zeros(1,M);
 
-% Params
 % True constants
-beta = 0.2;
-alpha = 1.2;
-gamma = 0.03;
-
 beta_x = beta;
-% abs(normrnd(beta, 0.1));
+alpha_x = alpha;
 gamma_x = gamma;
-%abs(normrnd(gamma, 0.1));
-alpha_x = alpha;% abs(normrnd(2, 0.5));
 var_gx = var_g;
+var_yx = var_y;
+
+
 
 % TIME
 for t = 2:T
+
+    beta_x = abs(normrnd(beta, 0.01));
+    gamma_x = abs(normrnd(gamma, 0.01));
+    alpha_x = abs(normrnd(1, 0.1));
+    var_gx = var_g;
 
 
     % PROPOSE PARTICLES
