@@ -4,6 +4,7 @@
 ### Directories
 1. ref - Stores reference paper that describes epidemiology SEIR model with Google Trends Flu data.
 2. figs - Stores .eps figures of the synthetic data example.
+3. data - Stores measles data.
 
 
 ### Synthetic Data example
