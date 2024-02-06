@@ -3,7 +3,7 @@ close all
 clc
 
 % Read in data
-dat = readtable('measles.xlsx');
+dat = readtable('data/measles.xlsx');
 
 % Reported cases
 y = table2cell(dat(:,2));
